@@ -1,42 +1,56 @@
 # TPW Carpet Addition
 
-Minecraft **1.20.4** Fabric + Carpet Extension mod implementing a sustainable **Wet Sponge** propagation mechanic inside Ocean Monuments.
+[English](README.md) | [简体中文](README_zh.md)
+
+A Minecraft **1.20.4** Fabric + Carpet Extension mod that adds practical features to vanilla Minecraft without introducing any new blocks, items, or entities.
+
+> **Note:** **All options are disabled by default** to preserve vanilla behavior. Enable the features you want via `/carpet` (or `/carpet setDefault <rule> <value>` to persist across restarts).
+
+---
 
 ## Requirements
-- Minecraft `1.20.4`
-- Fabric Loader `>= 0.15.0`
-- Fabric API
-- Fabric Carpet `>= 1.4.128`
 
-Compatible with **Lithium** (`BlockState` random-tick cache initialized cleanly with hot-toggle check at `randomTick` entry) and existing Carpet additions (`carpet-extra`, `carpet-tis-addition`, `carpet-ams-addition`, `carpet-igny-addition`, `gugle-carpet-addition`, `CrystalCarpetAddition`).
+- **Minecraft**: `1.20.4`
+- **Fabric Loader**: `>= 0.15.0`
+- **Fabric API**: `1.20.4`
+- **Fabric Carpet**: `>= 1.4.128`
 
-## Mechanics Overview
-- **Random-tick driven, no cooldown**: Wet sponges do not store cooldowns or schedule ticks.
-- **Seed eligibility** (all required):
-  1. Block is `minecraft:wet_sponge`.
-  2. Inside `minecraft:monument` structure bounds.
-  3. At least **5 of 6** adjacent faces touch `minecraft:water` (source or flowing).
-  4. In the `5×5×5` region centered on the seed, prismarine-family blocks (`prismarine`, `prismarine_bricks`, `dark_prismarine`, `sea_lantern`) $\ge N$.
-  5. In the `5×5×5` region centered on the seed, wet sponges $< 8$.
-- **Hit chance**:
-  - `finalChance = (1 / denominator) * conduitMultiplier * biomeMultiplier`
-  - **Conduit**: `×3.0` if an active `ConduitBlockEntity` is found within `wetSpongeConduitRadius` (queried strictly via loaded chunk `getBlockEntities()` maps).
-  - **Biome**: `×1.5` in `deep_frozen_ocean`, `×1.2` in `deep_cold_ocean`, `×1.0` otherwise.
-- **Target eligibility & multi-spawn**:
-  - Candidates in the seed's `5×5×5` must be `minecraft:water`, inside `minecraft:monument`, and satisfy prismarine $\ge N$ and wet sponges $< 8$ in their own `5×5×5`.
-  - In `1–3` mode (`50% / 30% / 20%`), each subsequent placement re-validates the `< 8` wet sponge cap and target eligibility against live block state.
+---
 
 ## `/carpet` Rules
-| Rule | Default | Description |
-| --- | --- | --- |
-| `wetSpongePropagation` | `false` | Master toggle (hot-toggleable in singleplayer/server) |
-| `wetSpongePrismarineThreshold` | `100` | Minimum prismarine-family blocks in `5×5×5` (1–124; default `100` prevents growth in unmodified vanilla monuments) |
-| `wetSpongeChanceDenominator` | `60` | Base hit probability denominator (`1 / N`) |
-| `wetSpongeConduitRadius` | `32` | Query radius for active Conduit BlockEntity (`0` disables bonus) |
-| `wetSpongeMaxSpawn` | `3` | `1` = fixed 1 per hit; `3` = weighted 1–3 (`50% / 30% / 20%`) |
 
-## Build
+Includes built-in `en_us` and `zh_cn` descriptions for `/carpet`.
+
+| Rule | Default | Valid Range / Options | Description |
+| --- | --- | --- | --- |
+| `renewableSpongeInMonument` | `false` | `true` / `false` | Master toggle for sustainable wet sponge propagation inside Ocean Monuments (`minecraft:monument`) |
+| `renewableSpongePrismarineThreshold` | `100` | `1–124` (suggestions: `80, 96, 100, 105, 110`) | Minimum prismarine-family blocks (`prismarine`, `prismarine_bricks`, `dark_prismarine`, `sea_lantern`) in `5×5×5` for both seed and target |
+| `renewableSpongeChanceDenominator` | `60` | `>= 1` (suggestions: `30, 50, 60, 80, 100`) | Base hit probability denominator (`1 / value`) per random tick |
+| `renewableSpongeConduitRadius` | `32` | `0–128` (suggestions: `16, 32, 48, 64`) | Active Conduit `BlockEntity` query radius in blocks for the `×3.0` rate bonus (`0` disables bonus) |
+| `renewableSpongeMaxSpawn` | `3` | `1` or `3` (strict) | Max spawns per hit: `1` = fixed 1; `3` = weighted 1–3 (`50% / 30% / 20%`) |
+
+### Quick Commands
+```mcfunction
+/carpet renewableSpongeInMonument true
+/carpet setDefault renewableSpongeInMonument true
+```
+
+To adjust pacing or chamber requirements:
+```mcfunction
+/carpet renewableSpongePrismarineThreshold 100
+/carpet renewableSpongeChanceDenominator 60
+/carpet renewableSpongeConduitRadius 32
+/carpet renewableSpongeMaxSpawn 3
+```
+
+---
+
+## Building from Source
+
+Requires **JDK 17+** (tested with OpenJDK 21).
+
 ```bash
 ./gradlew build
 ```
-Output jar: `build/libs/tpw-carpet-addition-1.0.0+1.20.4.jar`.
+
+The remapped mod jar is generated at `build/libs/tpw-carpet-addition-<version>.jar`.

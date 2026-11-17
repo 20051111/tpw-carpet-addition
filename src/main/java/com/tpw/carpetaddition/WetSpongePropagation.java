@@ -39,7 +39,7 @@ public final class WetSpongePropagation {
     }
 
     public static void onRandomTick(BlockState state, ServerLevel level, BlockPos seedPos, RandomSource random) {
-        if (!TpwCarpetSettings.wetSpongePropagation) {
+        if (!TpwCarpetSettings.renewableSpongeInMonument) {
             return;
         }
         if (!state.is(Blocks.WET_SPONGE)) {
@@ -54,7 +54,7 @@ public final class WetSpongePropagation {
             return;
         }
 
-        int threshold = TpwCarpetSettings.wetSpongePrismarineThreshold;
+        int threshold = TpwCarpetSettings.renewableSpongePrismarineThreshold;
         long seedCounts = countAreaBlocks(level, seedPos);
         if (unpackPrismarine(seedCounts) < threshold || unpackWetSponges(seedCounts) >= LOCAL_WET_SPONGE_CAP) {
             return;
@@ -70,7 +70,7 @@ public final class WetSpongePropagation {
             return;
         }
 
-        int spawnBudget = TpwCarpetSettings.wetSpongeMaxSpawn <= 1 ? 1 : rollOneToThree(random);
+        int spawnBudget = TpwCarpetSettings.renewableSpongeMaxSpawn <= 1 ? 1 : rollOneToThree(random);
         Util.shuffle(candidates, random);
 
         int spawned = 0;
@@ -165,10 +165,10 @@ public final class WetSpongePropagation {
     }
 
     public static double computeFinalChance(ServerLevel level, BlockPos seedPos) {
-        int denominator = Math.max(1, TpwCarpetSettings.wetSpongeChanceDenominator);
+        int denominator = Math.max(1, TpwCarpetSettings.renewableSpongeChanceDenominator);
         double baseChance = 1.0 / denominator;
         double biomeMult = getBiomeMultiplier(level, seedPos);
-        double conduitMult = hasActiveConduitNearby(level, seedPos, TpwCarpetSettings.wetSpongeConduitRadius) ? 3.0 : 1.0;
+        double conduitMult = hasActiveConduitNearby(level, seedPos, TpwCarpetSettings.renewableSpongeConduitRadius) ? 3.0 : 1.0;
         return baseChance * biomeMult * conduitMult;
     }
 

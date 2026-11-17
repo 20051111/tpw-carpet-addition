@@ -10,44 +10,44 @@ import net.minecraft.commands.CommandSourceStack;
  * Carpet rules exposed by TPW Carpet Addition under /carpet.
  */
 public class TpwCarpetSettings {
-    private static final String SPONGE_CATEGORY = "sponge";
+    private static final String TPW_CATEGORY = "TPW";
 
     @Rule(
-        categories = {RuleCategory.SURVIVAL, RuleCategory.FEATURE, SPONGE_CATEGORY}
+        categories = {RuleCategory.SURVIVAL, RuleCategory.FEATURE, TPW_CATEGORY}
     )
-    public static boolean wetSpongePropagation = false;
+    public static boolean renewableSpongeInMonument = false;
 
     @Rule(
-        categories = {RuleCategory.SURVIVAL, RuleCategory.FEATURE, SPONGE_CATEGORY},
+        categories = {TPW_CATEGORY},
         options = {"80", "96", "100", "105", "110"},
         strict = false,
         validators = PrismarineThresholdValidator.class
     )
-    public static int wetSpongePrismarineThreshold = 100;
+    public static int renewableSpongePrismarineThreshold = 100;
 
     @Rule(
-        categories = {RuleCategory.SURVIVAL, RuleCategory.FEATURE, SPONGE_CATEGORY},
+        categories = {TPW_CATEGORY},
         options = {"30", "50", "60", "80", "100"},
         strict = false,
         validators = PositiveDenominatorValidator.class
     )
-    public static int wetSpongeChanceDenominator = 60;
+    public static int renewableSpongeChanceDenominator = 60;
 
     @Rule(
-        categories = {RuleCategory.SURVIVAL, RuleCategory.FEATURE, SPONGE_CATEGORY},
+        categories = {TPW_CATEGORY},
         options = {"16", "32", "48", "64"},
         strict = false,
         validators = ConduitRadiusValidator.class
     )
-    public static int wetSpongeConduitRadius = 32;
+    public static int renewableSpongeConduitRadius = 32;
 
     @Rule(
-        categories = {RuleCategory.SURVIVAL, RuleCategory.FEATURE, SPONGE_CATEGORY},
+        categories = {TPW_CATEGORY},
         options = {"1", "3"},
         strict = true,
         validators = MaxSpawnValidator.class
     )
-    public static int wetSpongeMaxSpawn = 3;
+    public static int renewableSpongeMaxSpawn = 3;
 
     public static class PrismarineThresholdValidator extends Validator<Integer> {
         @Override
