@@ -1,0 +1,24 @@
+{
+  "carpet.category.sponge": "sponge",
+
+  "carpet.rule.wetSpongePropagation.name": "Wet Sponge Propagation",
+  "carpet.rule.wetSpongePropagation.desc": "Allows wet sponges to sustainably propagate into nearby water inside Ocean Monuments with high prismarine density.",
+  "carpet.rule.wetSpongePropagation.extra.0": "Seed requirements: inside minecraft:monument bounds, >= 5 adjacent water faces, 5x5x5 prismarine-family blocks >= threshold, and 5x5x5 wet sponges < 8.",
+  "carpet.rule.wetSpongePropagation.extra.1": "Triggered only by random ticks without cooldown; boosted x3 by an active Conduit and x1.5 / x1.2 in deep_frozen_ocean / deep_cold_ocean.",
+
+  "carpet.rule.wetSpongePrismarineThreshold.name": "Wet Sponge Prismarine Threshold",
+  "carpet.rule.wetSpongePrismarineThreshold.desc": "Minimum prismarine-family blocks (prismarine, prismarine bricks, dark prismarine, sea lantern) in a 5x5x5 region for wet sponge propagation.",
+  "carpet.rule.wetSpongePrismarineThreshold.extra.0": "Applied independently to both the seed wet sponge and each candidate target water block.",
+
+  "carpet.rule.wetSpongeChanceDenominator.name": "Wet Sponge Chance Denominator",
+  "carpet.rule.wetSpongeChanceDenominator.desc": "Base hit probability denominator (1 / N) per random tick for wet sponge propagation.",
+  "carpet.rule.wetSpongeChanceDenominator.extra.0": "Final hit chance = (1 / N) * conduit multiplier (x3 if active) * biome multiplier (x1.5 deep_frozen_ocean, x1.2 deep_cold_ocean, x1.0 otherwise).",
+
+  "carpet.rule.wetSpongeConduitRadius.name": "Wet Sponge Conduit Radius",
+  "carpet.rule.wetSpongeConduitRadius.desc": "Query radius (in blocks) for detecting an active Conduit BlockEntity to apply the x3 propagation rate bonus.",
+  "carpet.rule.wetSpongeConduitRadius.extra.0": "Set to 0 to disable the Conduit rate bonus.",
+
+  "carpet.rule.wetSpongeMaxSpawn.name": "Wet Sponge Max Spawn",
+  "carpet.rule.wetSpongeMaxSpawn.desc": "Maximum wet sponges generated per successful propagation tick (1 = fixed 1, 3 = weighted 1-3: 50%/30%/20%).",
+  "carpet.rule.wetSpongeMaxSpawn.extra.0": "Each subsequent placement re-validates the local < 8 wet sponge cap against live block state."
+}

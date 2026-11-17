@@ -1,0 +1,24 @@
+{
+  "carpet.category.sponge": "海绵",
+
+  "carpet.rule.wetSpongePropagation.name": "湿海绵可持续增殖",
+  "carpet.rule.wetSpongePropagation.desc": "允许海底神殿结构边界内、高海晶密度环境下的湿海绵通过随机刻向附近水方块增殖。",
+  "carpet.rule.wetSpongePropagation.extra.0": "种源需位于 minecraft:monument 边界内，至少 5 面接触水，5x5x5 内海晶类方块 >= 阈值且湿海绵 < 8。",
+  "carpet.rule.wetSpongePropagation.extra.1": "仅由随机刻触发且无冷却；范围内存在已激活潮涌核心时概率 x3；冰冻深海 x1.5、冷水深海 x1.2。",
+
+  "carpet.rule.wetSpongePrismarineThreshold.name": "湿海绵增殖海晶阈值",
+  "carpet.rule.wetSpongePrismarineThreshold.desc": "种源与目标各自 5x5x5 范围内所需的最少海晶类方块数量（海晶石、海晶石砖、暗海晶石、海晶灯）。",
+  "carpet.rule.wetSpongePrismarineThreshold.extra.0": "默认值高于原版天然海底神殿房间水下的最大海晶密度，需玩家手动加密海晶环境才可触发。",
+
+  "carpet.rule.wetSpongeChanceDenominator.name": "湿海绵增殖基础概率分母",
+  "carpet.rule.wetSpongeChanceDenominator.desc": "每次随机刻命中增殖的基础概率分母（基础概率 = 1 / 分母）。",
+  "carpet.rule.wetSpongeChanceDenominator.extra.0": "最终命中率 = (1 / 分母) * 潮涌核心修正(x3) * 群系温度修正(冰冻深海 x1.5 / 冷水深海 x1.2 / 其他 x1.0)。",
+
+  "carpet.rule.wetSpongeConduitRadius.name": "湿海绵潮涌核心查询半径",
+  "carpet.rule.wetSpongeConduitRadius.desc": "查询已激活潮涌核心方块实体的半径（格），命中时提供 x3 增殖概率加成。",
+  "carpet.rule.wetSpongeConduitRadius.extra.0": "仅遍历邻近已加载区块的方块实体列表，设为 0 可关闭潮涌核心加成。",
+
+  "carpet.rule.wetSpongeMaxSpawn.name": "湿海绵单次最大生成数",
+  "carpet.rule.wetSpongeMaxSpawn.desc": "单次命中允许生成的湿海绵数量模式（1 = 固定 1 个；3 = 1~3 个随机，概率 50%/30%/20%）。",
+  "carpet.rule.wetSpongeMaxSpawn.extra.0": "每次放置后均基于最新方块状态重检 5x5x5 内湿海绵 < 8 上限。"
+}
